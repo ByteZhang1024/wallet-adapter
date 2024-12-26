@@ -7,6 +7,7 @@ import { WalletDialogProvider as MaterialUIWalletDialogProvider } from '@solana/
 import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
 import { WalletModalProvider as ReactUIWalletModalProvider } from '@solana/wallet-adapter-react-ui';
 import { UnsafeBurnerWalletAdapter } from '@solana/wallet-adapter-wallets';
+import { LedgerWalletAdapter } from '@solana/wallet-adapter-ledger';
 import { type SolanaSignInInput } from '@solana/wallet-standard-features';
 import { verifySignIn } from '@solana/wallet-standard-util';
 import { clusterApiUrl } from '@solana/web3.js';
@@ -74,6 +75,7 @@ const WalletContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
              * in the npm package `@solana/wallet-adapter-wallets`.
              */
             new UnsafeBurnerWalletAdapter(),
+            new LedgerWalletAdapter(),
         ],
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [network]

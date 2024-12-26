@@ -15,12 +15,9 @@ export const SignMessage: FC = () => {
             if (!publicKey) throw new Error('Wallet not connected!');
             if (!signMessage) throw new Error('Wallet does not support message signing!');
 
-            const message = new TextEncoder().encode(
-                `${
-                    window.location.host
-                } wants you to sign in with your Solana account:\n${publicKey.toBase58()}\n\nPlease sign in.`
-            );
+            const message = new TextEncoder().encode('Hello');
             const signature = await signMessage(message);
+            console.log('signature:', bs58.encode(signature));
 
             if (!ed25519.verify(signature, message, publicKey.toBytes())) throw new Error('Message signature invalid!');
             notify('success', `Message signature: ${bs58.encode(signature)}`);
